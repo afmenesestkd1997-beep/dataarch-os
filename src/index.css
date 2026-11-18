@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: #F3F5FB; --card: #FFFFFF; --ink: #0B1220; --muted: #64708A; --line: #E4E8F2; --sub: #F6F8FC; --violet-soft: #EFEAFF;
+  --grid: #E8ECF5;
+}
+.dark {
+  --surface: #080D18; --card: #101828; --ink: #EAF0FF; --muted: #93A0BC; --line: #1E2A42; --sub: #0C1424; --violet-soft: #231B4A;
+  --grid: #1E2A42;
+}
+html, body, #root { height: 100%; }
+body { background: var(--surface); color: var(--ink); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+* { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.num { font-variant-numeric: tabular-nums; }
+.grad-brand { background: linear-gradient(135deg, #14213D 0%, #3B2A8C 55%, #7C5CFC 100%); }
+.grad-text { background: linear-gradient(90deg, #A78BFA, #7C5CFC 60%, #4F8CFF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fadeUp .35s ease both; }
+@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+.skeleton { background: linear-gradient(90deg, var(--line) 0%, var(--sub) 50%, var(--line) 100%); background-size: 800px 100%; animation: shimmer 1.4s infinite linear; }
+input[type=range] { accent-color: #7C5CFC; width: 100%; }
+.recharts-text { fill: var(--muted); font-size: 11px; }
+.recharts-cartesian-grid line { stroke: var(--grid); }
