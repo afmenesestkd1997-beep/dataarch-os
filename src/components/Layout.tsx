@@ -54,16 +54,23 @@ export const NAV = [
 const FLAT = NAV.flatMap((g) => g.items.map((i) => ({ ...i, group: g.group })))
 void [Activity, AlertTriangle, Calculator, CalendarClock, Coins, LineChart, Package, Sparkles, CheckCircle2]
 
+/** Marca del arco: anillo sólido lavanda (mismo path que Sitio Web / assets/arch.svg). */
+export function ArchMark({ size = 40 }: { size?: number }) {
+  const h = Math.round(size * 56 / 120)
+  return (
+    <svg width={size} height={h} viewBox="0 0 120 56" fill="none" aria-hidden="true">
+      <path fill="#C5B3FF" d="M12 54C12 27.5 33.5 6 60 6s48 21.5 48 48H92c0-17.7-14.3-32-32-32S28 36.3 28 54H12z" />
+    </svg>
+  )
+}
+
 export function Logo({ light = true, small }: { light?: boolean; small?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
-      <svg width={small ? 26 : 32} height={small ? 20 : 24} viewBox="0 0 40 30" fill="none">
-        <path d="M4 28C4 12 11 3 20 3s16 9 16 25" stroke="url(#lg)" strokeWidth="5" strokeLinecap="round" />
-        <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="0"><stop stopColor="#A78BFA" /><stop offset="1" stopColor="#7C5CFC" /></linearGradient></defs>
-      </svg>
+      <ArchMark size={small ? 32 : 40} />
       <div className="leading-none">
-        <div className={cn('text-[17px] font-extrabold tracking-tight', light ? 'text-white' : 'text-ink')}>Data<span className="text-[#A78BFA]">Arch</span> <span className="font-semibold opacity-70">OS</span></div>
-        {!small && <div className={cn('mt-1 text-[10px] font-medium', light ? 'text-white/55' : 'text-muted')}>Financial Intelligence Platform</div>}
+        <div className={cn('text-[17px] font-extrabold tracking-tight', light ? 'text-white' : 'text-ink')}>Data<span className="text-[#C5B3FF]">Arch</span> <span className="font-semibold opacity-70">OS</span></div>
+        {!small && <div className={cn('mt-1 text-[10px] font-medium tracking-[0.14em] uppercase', light ? 'text-white/55' : 'text-muted')}>Financial Intelligence</div>}
       </div>
     </div>
   )
@@ -76,7 +83,7 @@ function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => 
       {mobileOpen && <div className="fixed inset-0 z-30 bg-navy/60 lg:hidden" onClick={onClose} />}
       <aside className={cn('fixed inset-y-0 left-0 z-40 flex flex-col bg-navy text-white transition-all duration-200 lg:static lg:translate-x-0', collapsed ? 'lg:w-[68px]' : 'lg:w-[262px]', 'w-[262px]', mobileOpen ? 'translate-x-0' : '-translate-x-full')}>
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/10 px-4">
-          {collapsed ? <svg width="28" height="22" viewBox="0 0 40 30" fill="none"><path d="M4 28C4 12 11 3 20 3s16 9 16 25" stroke="#A78BFA" strokeWidth="5" strokeLinecap="round" /></svg> : <Logo />}
+          {collapsed ? <ArchMark size={28} /> : <Logo />}
           <button className="rounded-lg p-1 text-white/60 hover:bg-white/10 lg:hidden" onClick={onClose}><X size={18} /></button>
         </div>
         <nav className="flex-1 overflow-y-auto px-2.5 py-3">
